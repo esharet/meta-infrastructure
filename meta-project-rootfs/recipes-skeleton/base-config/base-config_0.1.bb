@@ -8,6 +8,7 @@ SRC_URI += "file://hosts"
 SRC_URI += "file://inputrc"
 SRC_URI += "file://bashrc"
 SRC_URI += "file://profile"
+SRC_URI += "file://hostname"
 
 do_install () {
   # create local conf directory
