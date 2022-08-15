@@ -8,12 +8,13 @@ SRC_URI += "file://hosts"
 SRC_URI += "file://inputrc"
 SRC_URI += "file://bashrc"
 SRC_URI += "file://profile"
-SRC_URI += "file://hostname"
+# In order to change hostname, add the following line in conf/local.conf:
+# hostname_pn-base-files = "your_hostname_here"
+#SRC_URI += "file://hostname"
 
 do_install () {
   # create local conf directory
   install -d                                     ${D}${localstatedir}/local/config
-  install -m 0644 ${S}/hostname                  ${D}${localstatedir}/local/config/
 
   # set hosts default file
   #     didn't manage to dynamically copy original 'netbase' file
@@ -25,7 +26,6 @@ do_install () {
   install -m 0755 ${S}/bashrc                    ${D}${sysconfdir}/os-config/bashrc
   install -m 0755 ${S}/profile                   ${D}${sysconfdir}/os-config/profile
   install -m 0600 ${S}/inputrc                   ${D}${sysconfdir}/os-config/inputrc
-
 }
 
 pkg_postinst_${PN} () {
